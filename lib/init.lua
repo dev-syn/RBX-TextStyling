@@ -1,6 +1,5 @@
 ---@module lib/Types
 local Types = require(script.Parent:FindFirstChild("Types"));
-
 export type TextStyling = Types.TextStyling;
 
 --[=[
@@ -34,7 +33,7 @@ export type TextStyling = Types.TextStyling;
         &o - Italic
         &r - Reset
 ]=]
-local TextStyling = {} :: Types.TextStyling;
+local TextStyling = {} :: TextStyling;
 TextStyling.__index = TextStyling;
 
 TextStyling.ColourCodeMap = {
