@@ -1,0 +1,5 @@
+{
+    "name": "text-styling",
+    "globIgnorePaths": ["**/*.spec.lua"],
+    "tree": {"$path": "lib"}
+}

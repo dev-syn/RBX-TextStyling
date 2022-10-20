@@ -1,0 +1,10 @@
+{
+    "name": "text-styling",
+    "tree": {
+        "$className": "DataModel",
+        "ServerScriptService": {
+            "TextStyling": {"$path": "lib"},
+            "testRunner": {"$path": "Tests/testRunner.server.lua"}
+        }
+    }
+}
