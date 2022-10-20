@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] -- 2022/10/20
+### Added
+- Improved class description
+- Add README with documentation link
 ## [0.1.1] -- 2022/10/20
 ### Changed
 - TextStyling class return type to exported TextStyling type instead of Types.TextStyling
