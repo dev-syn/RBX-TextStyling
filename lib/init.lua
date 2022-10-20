@@ -1,6 +1,8 @@
 ---@module lib/Types
 local Types = require(script.Parent:FindFirstChild("Types"));
 
+export type TextStyling = Types.TextStyling;
+
 --[=[
     @class TextStyling
 
