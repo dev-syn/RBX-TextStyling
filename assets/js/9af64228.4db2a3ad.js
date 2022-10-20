@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[255],{63891:s=>{s.exports=JSON.parse('{"sourceUrl":"https://github.com/dev-syn/RBX-TextStyling/blob/master","baseUrl":"/RBX-TextStyling/","classOrder":[],"apiCategories":[]}')}}]);
