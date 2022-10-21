@@ -1,4 +1,4 @@
----@module lib/Types
+---@module TextStyling/lib/Types
 local Types = require(script:FindFirstChild("Types"));
 export type TextStyling = Types.TextStyling;
 
@@ -131,13 +131,16 @@ function TextStyling.ParseTextCodes(text: string) : string
             local nextIndex: number = currentIndex + 1;
             local codeChar: string = text:sub(nextIndex,nextIndex);
             if TextStyling.ColourCodeMap[codeChar] then
-                -- Color code is used close format codes but don't remove
-                parsedText = TextStyling.CloseFormatCodes(parsedText,activeFormats);
                 if prevColourCode then
                     if prevColourCode == codeChar then ignoreNext = true; continue; end
+                    -- Color code is used close format codes but don't remove
+                    parsedText = TextStyling.CloseFormatCodes(parsedText,activeFormats);
                     -- The colour code is different so close off the last colour font tag
                     parsedText = parsedText.."</font>";
                     prevColourCode = nil;
+                else
+                    -- Color code is used close format codes but don't remove
+                    parsedText = TextStyling.CloseFormatCodes(parsedText,activeFormats);
                 end
                 parsedText = parsedText..formatRichColour(TextStyling.ColourCodeMap[codeChar]);
                 -- Reopen any format codes
