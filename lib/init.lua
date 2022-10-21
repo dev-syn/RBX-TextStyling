@@ -133,7 +133,8 @@ function TextStyling.ParseTextCodes(text: string) : string
             if TextStyling.ColourCodeMap[codeChar] then
                 -- Color code is used close format codes but don't remove
                 parsedText = TextStyling.CloseFormatCodes(parsedText,activeFormats);
-                if prevColourCode and prevColourCode ~= codeChar then
+                if prevColourCode then
+                    if prevColourCode == codeChar then ignoreNext = true; continue; end
                     -- The colour code is different so close off the last colour font tag
                     parsedText = parsedText.."</font>";
                     prevColourCode = nil;
