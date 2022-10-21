@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6]
+### Added
+- Fix `&lt;` and `&rt;` not being added to RichText
+
 ## [0.1.5]
 ### Changed
 - When colour code is the same with format codes properly format the rich text
