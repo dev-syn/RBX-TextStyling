@@ -106,7 +106,6 @@ end
     This function takes in a text and when any colour codes are found they will be converted into font rich text format.
 ]=]
 function TextStyling.ParseTextCodes(text: string) : string
-    local currentIndex: number = 0;
     local parsedText: string = "";
 
     local ignoreNext: boolean = false;
@@ -114,8 +113,10 @@ function TextStyling.ParseTextCodes(text: string) : string
     local prevColourCode: string? = nil;
     local activeFormats: {string} = {};
 
-    for char: string in text:gmatch(".") do
+    local currentIndex: number = 0;
+    while currentIndex < #text do
         currentIndex += 1;
+        local char: string = text:sub(currentIndex,currentIndex);
         if ignoreNext then
             ignoreNext = false;
             continue;
@@ -131,6 +132,13 @@ function TextStyling.ParseTextCodes(text: string) : string
             local nextIndex: number = currentIndex + 1;
             local codeChar: string = text:sub(nextIndex,nextIndex);
             if TextStyling.ColourCodeMap[codeChar] then
+                -- Check for a rich text greater than
+                if text:sub(nextIndex,nextIndex + 2) == "gt;" then
+                    -- Jump past this &gt;
+                    currentIndex = nextIndex + 2;
+                    parsedText = parsedText.."&gt;";
+                    continue;
+                end
                 if prevColourCode then
                     if prevColourCode == codeChar then ignoreNext = true; continue; end
                     -- Color code is used close format codes but don't remove
@@ -147,6 +155,13 @@ function TextStyling.ParseTextCodes(text: string) : string
                 parsedText = TextStyling.OpenFormatCodes(parsedText,activeFormats);
                 prevColourCode = codeChar;
             elseif TextStyling.FormatCodeMap[codeChar] then
+                -- Check for a rich text less than
+                if text:sub(nextIndex,nextIndex + 2) == "lt;" then
+                    -- Jump past this &lt;
+                    currentIndex = nextIndex + 2;
+                    parsedText = parsedText.."&lt;";
+                    continue;
+                end
                 -- Only do formatting with this code if it's not already active
                 if table.find(activeFormats,codeChar) then
                     -- Ignore next char
